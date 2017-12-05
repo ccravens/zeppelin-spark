@@ -28,6 +28,8 @@ RUN echo "$LOG_TAG update and install basic packages" && \
     apt-get install -y locales && \
     locale-gen $LANG && \
     apt-get install -y software-properties-common && \
+    apt-get install -y vim && \
+    apt-get install -y inetutils-ping && \
     apt -y autoclean && \
     apt -y dist-upgrade && \
     apt-get install -y build-essential
@@ -39,7 +41,7 @@ RUN echo "$LOG_TAG install tini related packages" && \
     dpkg -i tini.deb && \
     rm tini.deb
 
-ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre
 RUN echo "$LOG_TAG Install java8" && \
     apt-get -y update && \
     apt-get install -y openjdk-8-jdk && \
@@ -95,6 +97,11 @@ RUN echo "$LOG_TAG Download Zeppelin binary" && \
 RUN echo "$LOG_TAG Cleanup" && \
     apt-get autoclean && \
     apt-get clean
+
+ENV HADOOP_HOME=/opt/hadoop/hadoop-2.6.0-cdh5.10.1
+ENV HADOOP_CONF_DIR=/opt/hadoop/hambda2_conf
+ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre
+ENV PATH $PATH:$HADOOP_HOME/bin:$JAVA_HOME
 
 EXPOSE 8080
 
