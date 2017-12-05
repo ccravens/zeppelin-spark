@@ -98,9 +98,9 @@ RUN echo "$LOG_TAG Cleanup" && \
     apt-get autoclean && \
     apt-get clean
 
-
+ENV DEBIAN_FRONTEND=noninteractive
 RUN echo "$LOG_TAG Installing Kerberos Tools" && \
-    apt-get install krb5-user
+    apt-get install -y krb5-user
 
 ENV HADOOP_HOME=/opt/hadoop/hadoop-2.6.0-cdh5.10.1
 ENV HADOOP_CONF_DIR=/opt/hadoop/hambda2_conf
