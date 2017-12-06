@@ -107,6 +107,14 @@ ENV HADOOP_CONF_DIR=/opt/hadoop/hambda2_conf
 ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre
 ENV PATH $PATH:$HADOOP_HOME/bin:$JAVA_HOME
 
+RUN mkdir -p /opt/hadoop
+RUN mkdir -p /opt/spark
+
+RUN echo "$LOG_TAG Installing Spark" && \
+    wget -O /opt/spark/spark-2.2.0-bin-hadoop2.6.tgz https://www.apache.org/dyn/closer.lua/spark/spark-2.2.0/spark-2.2.0-bin-hadoop2.6.tgz && \
+    tar -zxvf /opt/spark/spark-2.2.0-bin-hadoop2.6.tgz -C /opt/spark && \
+    rm -rf /opt/spark/spark-2.2.0-bin-hadoop2.6.tgz
+
 EXPOSE 8080
 
 ENTRYPOINT [ "/usr/bin/tini", "--" ]
