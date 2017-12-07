@@ -111,7 +111,7 @@ RUN mkdir -p /opt/hadoop
 RUN mkdir -p /opt/spark
 
 RUN echo "$LOG_TAG Installing Spark" && \
-    wget -O /opt/spark/spark-2.2.0-bin-hadoop2.6.tgz https://www.apache.org/dyn/closer.lua/spark/spark-2.2.0/spark-2.2.0-bin-hadoop2.6.tgz && \
+    wget -O /opt/spark/spark-2.2.0-bin-hadoop2.6.tgz http://download.nextag.com/apache/spark/spark-2.2.0/spark-2.2.0-bin-hadoop2.6.tgz && \
     tar -zxvf /opt/spark/spark-2.2.0-bin-hadoop2.6.tgz -C /opt/spark && \
     rm -rf /opt/spark/spark-2.2.0-bin-hadoop2.6.tgz
 
