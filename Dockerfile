@@ -98,6 +98,10 @@ RUN echo "$LOG_TAG Cleanup" && \
     apt-get autoclean && \
     apt-get clean
 
+
+RUN echo "$LOG_TAG Preparing Spark Config" && \
+    mv /zeppelin/conf/zeppelin-env.sh.template /zeppelin/conf/zeppelin-env.sh
+
 ENV DEBIAN_FRONTEND=noninteractive
 RUN echo "$LOG_TAG Installing Kerberos Tools" && \
     apt-get install -y krb5-user
@@ -110,7 +114,7 @@ ENV PATH $PATH:$HADOOP_HOME/bin:$JAVA_HOME
 RUN mkdir -p /opt/hadoop
 RUN mkdir -p /opt/spark
 
-RUN echo "$LOG_TAG Installing Spark" && \
+RUN echo "$LOG_TAG Installing Spark Client" && \
     wget -O /opt/spark/spark-2.2.0-bin-hadoop2.6.tgz http://download.nextag.com/apache/spark/spark-2.2.0/spark-2.2.0-bin-hadoop2.6.tgz && \
     tar -zxvf /opt/spark/spark-2.2.0-bin-hadoop2.6.tgz -C /opt/spark && \
     rm -rf /opt/spark/spark-2.2.0-bin-hadoop2.6.tgz
@@ -119,4 +123,4 @@ EXPOSE 8080
 
 ENTRYPOINT [ "/usr/bin/tini", "--" ]
 WORKDIR ${Z_HOME}
-CMD ["bin/zeppelin.sh"]
+CMD ["bin/zeppelin-daemon.sh", "start"]
