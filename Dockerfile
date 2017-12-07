@@ -123,4 +123,4 @@ EXPOSE 8080
 
 ENTRYPOINT [ "/usr/bin/tini", "--" ]
 WORKDIR ${Z_HOME}
-CMD ["bin/zeppelin-daemon.sh", "start"]
+CMD ["bin/zeppelin.sh"]
