@@ -108,6 +108,7 @@ RUN echo "$LOG_TAG Installing Kerberos Tools" && \
 
 ENV HADOOP_HOME=/opt/hadoop/hadoop-2.6.0-cdh5.10.1
 ENV HADOOP_CONF_DIR=/opt/hadoop/hambda2_conf
+ENV SPARK_HOME=/opt/spark/spark-2.2.0-bin-hadoop2.6
 ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre
 ENV PATH $PATH:$HADOOP_HOME/bin:$JAVA_HOME
 
