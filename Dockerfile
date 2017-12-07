@@ -123,4 +123,4 @@ EXPOSE 8080
 ENTRYPOINT [ "/usr/bin/tini", "--" ]
 WORKDIR ${Z_HOME}
 
-CMD ["bin/zeppelin.sh","--config /zeppelin/conf"]
+CMD ["bin/zeppelin.sh","--config=/zeppelin/conf"]
