@@ -99,8 +99,6 @@ RUN echo "$LOG_TAG Cleanup" && \
     apt-get clean
 
 
-RUN echo "$LOG_TAG Preparing Spark Config" && \
-    mv /zeppelin/conf/zeppelin-env.sh.template /zeppelin/conf/zeppelin-env.sh
 
 ENV DEBIAN_FRONTEND=noninteractive
 RUN echo "$LOG_TAG Installing Kerberos Tools" && \
